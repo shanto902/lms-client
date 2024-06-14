@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom";
+
 import useAuth from "../../hooks/useAuth";
-import Loading from "../../components/Loading";
 
 // eslint-disable-next-line react/prop-types
 const PrivateRoute = ({ children }) => {
@@ -8,7 +8,7 @@ const PrivateRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    return <Loading />;
+    return <h2>Loading</h2>;
   }
 
   if (user) {

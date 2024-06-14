@@ -1,12 +1,13 @@
-import { Button, Space, Table } from "antd";
+import { Button, Space, Table, Spin, Alert } from "antd";
+import useCourses from "../hooks/useCourses";
+
 const columns = [
   {
     title: "Course Title",
-    dataIndex: "title",
+    dataIndex: "courseTitle",
     key: "courseTitle",
     render: (text) => <a>{text}</a>,
   },
-
   {
     title: "Description",
     dataIndex: "description",
@@ -22,42 +23,42 @@ const columns = [
     dataIndex: "price",
     key: "price",
   },
-
   {
     title: "Action",
     key: "action",
     render: (_, record) => (
       <Space size="middle">
-        <Button>Buy {record.title}</Button>
+        <Button>Buy {record.courseTitle}</Button>
       </Space>
     ),
   },
 ];
-const data = [
-  {
-    key: "1",
-    title: "John Brown",
-    price: 32,
-    description: "New York No. 1 Lake Park",
-    instructorName: "Ashiq",
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    tags: ["loser"],
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sydney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-];
+
 const ViewAllCourses = () => {
-  return <Table columns={columns} dataSource={data} />;
+  const { courses, loading, error } = useCourses();
+
+  if (loading) {
+    return <Spin size="large" />;
+  }
+
+  if (error) {
+    return (
+      <Alert
+        message="Error"
+        description="Failed to load courses"
+        type="error"
+        showIcon
+      />
+    );
+  }
+
+  return (
+    <Table
+      columns={columns}
+      dataSource={courses}
+      rowKey={(record) => record._id}
+    />
+  );
 };
 
 export default ViewAllCourses;

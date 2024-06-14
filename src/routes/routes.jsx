@@ -6,11 +6,16 @@ import ViewAllCourses from "../pages/ViewAllCourses";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ViewMyCourses from "../pages/ViewMyCourses";
+import PrivateRoute from "./private/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element: (
+      <PrivateRoute>
+        <MainLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         index: true,

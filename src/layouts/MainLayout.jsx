@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { DashboardOutlined } from "@ant-design/icons";
-import { Button, Layout, Menu } from "antd";
+import { Avatar, Button, Layout, Menu } from "antd";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 const { Header, Content, Sider } = Layout;
 
 const navItems = [
@@ -30,6 +31,8 @@ const navItems = [
 const MainLayout = () => {
   const [sideMenuToggle, setSideMenuToggle] = useState(true);
   const location = useLocation();
+
+  const { user, logout } = useAuth();
 
   // Determine which menu item should be selected based on the current path
   const getDefaultSelectedKey = () => {
@@ -70,16 +73,28 @@ const MainLayout = () => {
             margin: "40px 10px 0px 0px",
           }}
         >
-          <img
-            src="https://avatar.iran.liara.run/public"
-            alt=""
-            style={{
-              height: 100,
-              width: 100,
-            }}
+          <Avatar
+            size={100}
+            icon={
+              <img
+                src={
+                  user.photoURL
+                    ? user.photoURL
+                    : "https://avatar.iran.liara.run/public"
+                }
+                alt=""
+                style={{
+                  height: 100,
+                  width: 100,
+                  borderRadius: "50%",
+                }}
+              />
+            }
           />
-          <h3 style={{ color: "white" }}>Admin Name</h3>
+
+          <h3 style={{ color: "white" }}>{user.displayName}</h3>
         </div>
+        <hr style={{ margin: "15px 0" }} />
         <Menu
           theme="dark"
           mode="inline"
@@ -87,6 +102,7 @@ const MainLayout = () => {
           items={navItems}
         />
         <Button
+          onClick={logout}
           style={{
             display: sideMenuToggle ? "block" : "none",
             position: "absolute",

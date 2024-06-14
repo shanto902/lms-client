@@ -1,12 +1,32 @@
-import { GoogleOutlined } from "@ant-design/icons";
 import { Button, Form, Input } from "antd";
+import GoogleLogin from "../components/providers/GoogleLogin";
+import useAuth from "../hooks/useAuth";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
 const Login = () => {
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const { signIn, user } = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const onFinish = async (values) => {
+    try {
+      await signIn(values.email, values.password);
+      toast.success("Login Successful");
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+  const from = location?.state?.from?.pathname || "/";
+  useEffect(() => {
+    if (user) {
+      navigate(from, { replace: true });
+    }
+  }, [user, from, navigate]);
+
   return (
     <div
       style={{
@@ -16,86 +36,90 @@ const Login = () => {
         alignItems: "center",
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Form
-          name="basic"
-          labelCol={{
-            span: 10,
-          }}
-          wrapperCol={{
-            span: 16,
-          }}
+      <div>
+        <h1 style={{ margin: "30px 0" }}>Learning Management System</h1>
+        <div
           style={{
-            maxWidth: 800,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
           }}
-          initialValues={{
-            remember: true,
-          }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-          autoComplete="off"
         >
-          <Form.Item
-            label="Email"
-            name="email"
-            rules={[
-              {
-                required: true,
-                message: "Please input your email!",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-
-          <Form.Item
-            label="Password"
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: "Please input your password!",
-              },
-            ]}
-          >
-            <Input.Password />
-          </Form.Item>
-
-          <Form.Item
-            label="Confirm Password"
-            name="confirmPassword"
-            rules={[
-              {
-                required: true,
-                message: "Re-enter input your password!",
-              },
-            ]}
-          >
-            <Input.Password />
-          </Form.Item>
-
-          <Form.Item
+          <Form
+            name="basic"
+            labelCol={{
+              span: 10,
+            }}
             wrapperCol={{
-              offset: 8,
               span: 16,
             }}
+            style={{
+              maxWidth: 800,
+            }}
+            initialValues={{
+              remember: true,
+            }}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+            autoComplete="off"
           >
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
-          </Form.Item>
-        </Form>
-        <Button style={{ width: "300px" }}>
-          <GoogleOutlined />
-          Continue with Google{" "}
-        </Button>
+            <Form.Item
+              label="Email"
+              name="email"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your email!",
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your password!",
+                },
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
+
+            <Form.Item
+              label="Confirm Password"
+              name="confirmPassword"
+              rules={[
+                {
+                  required: true,
+                  message: "Re-enter input your password!",
+                },
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
+
+            <Form.Item
+              wrapperCol={{
+                offset: 8,
+                span: 16,
+              }}
+            >
+              <Button type="primary" htmlType="submit">
+                Submit
+              </Button>
+            </Form.Item>
+          </Form>
+          <Button type="link">
+            <NavLink to={"/register"}>Already Have An Account?</NavLink>
+          </Button>
+
+          <GoogleLogin />
+        </div>
       </div>
     </div>
   );
