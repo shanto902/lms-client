@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { DashboardOutlined } from "@ant-design/icons";
+import {
+  DashboardOutlined,
+  FileAddOutlined,
+  FolderViewOutlined,
+  SnippetsOutlined,
+  DiffOutlined,
+} from "@ant-design/icons";
 import { Avatar, Button, Layout, Menu } from "antd";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
@@ -13,22 +19,22 @@ const navItems = [
   },
   {
     key: 2,
-    icon: React.createElement(DashboardOutlined),
+    icon: React.createElement(FileAddOutlined),
     label: <NavLink to={"/add-course"}>Add Course</NavLink>,
   },
   {
     key: 3,
-    icon: React.createElement(DashboardOutlined),
-    label: <NavLink to={"/all-courses"}>View All Course</NavLink>,
+    icon: React.createElement(FolderViewOutlined),
+    label: <NavLink to={"/all-courses"}>View All Courses</NavLink>,
   },
   {
     key: 4,
-    icon: React.createElement(DashboardOutlined),
-    label: <NavLink to={"/my-courses"}>My All Course</NavLink>,
+    icon: React.createElement(SnippetsOutlined),
+    label: <NavLink to={"/my-courses"}>My All Courses</NavLink>,
   },
   {
     key: 5,
-    icon: React.createElement(DashboardOutlined),
+    icon: React.createElement(DiffOutlined),
     label: <NavLink to={"/enrolled-courses"}>Enrolled Courses</NavLink>,
   },
 ];

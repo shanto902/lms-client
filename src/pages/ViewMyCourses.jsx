@@ -48,7 +48,18 @@ const ViewMyCourses = () => {
   };
 
   if (loading) {
-    return <Spin size="large" />;
+    return (
+      <div
+        style={{
+          display: "flex",
+          height: "100vh",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Spin size="large" />
+      </div>
+    );
   }
 
   if (error) {
@@ -63,25 +74,30 @@ const ViewMyCourses = () => {
   }
 
   return (
-    <Table
-      columns={[
-        ...columns,
-        {
-          title: "Action",
-          key: "action",
-          render: (_, record) => (
-            <Space size="middle">
-              <Button onClick={() => handleEditCourse(record)}>Edit</Button>
-              <Button onClick={() => handleDeleteCourse(record)} danger>
-                Delete
-              </Button>
-            </Space>
-          ),
-        },
-      ]}
-      dataSource={courses}
-      rowKey={(record) => record._id}
-    />
+    <div>
+      <h2 style={{ textAlign: "center", margin: "20px 0" }}>
+        My All Written Courses
+      </h2>
+      <Table
+        columns={[
+          ...columns,
+          {
+            title: "Action",
+            key: "action",
+            render: (_, record) => (
+              <Space size="middle">
+                <Button onClick={() => handleEditCourse(record)}>Edit</Button>
+                <Button onClick={() => handleDeleteCourse(record)} danger>
+                  Delete
+                </Button>
+              </Space>
+            ),
+          },
+        ]}
+        dataSource={courses}
+        rowKey={(record) => record._id}
+      />
+    </div>
   );
 };
 

@@ -1,8 +1,30 @@
-# React + Vite
+### Frontend Repository README
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+````markdown
+# LMS Dashboard Frontend
 
-Currently, two official plugins are available:
+This repository contains the frontend codebase for the Learning Management System (LMS) Dashboard project. The frontend is developed using React.js to provide a responsive and intuitive user interface for managing courses, user authentication using Firebase, and integrating payment systems for course enrollment.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Overview
+
+You are tasked with developing a dynamic frontend to interact with the LMS dashboard backend:
+
+- **React.js:** Develop a responsive UI with components to manage courses and user authentication.
+- **Firebase Authentication:** Implement user registration and login securely.
+- **Payment Integration:** Enable users to enroll in courses securely using integrated payment systems.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js installed on your local machine
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/shanto902/lms-client.git
+   cd lms-dashboard-frontend
+   ```
+````

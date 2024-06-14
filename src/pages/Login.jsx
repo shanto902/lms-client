@@ -37,7 +37,8 @@ const Login = () => {
       }}
     >
       <div>
-        <h1 style={{ margin: "30px 0" }}>Learning Management System</h1>
+        <h1 style={{ margin: "10px 0" }}>Learning Management System</h1>
+        <h2 style={{ textAlign: "center", marginBottom: "50px" }}>Login Now</h2>
         <div
           style={{
             display: "flex",
@@ -102,7 +103,7 @@ const Login = () => {
             </Form.Item>
           </Form>
           <Button type="link">
-            <NavLink to={"/register"}>Already Have An Account?</NavLink>
+            <NavLink to={"/register"}>Register Now</NavLink>
           </Button>
 
           <GoogleLogin />

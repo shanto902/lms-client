@@ -1,5 +1,6 @@
 import { Alert, Button, Space, Spin, Table } from "antd";
 import useEnrolledCourses from "../hooks/useEnrolledCourses";
+import { NavLink } from "react-router-dom";
 
 const columns = [
   {
@@ -29,7 +30,18 @@ const MyEnrolledCourses = () => {
   const { courses, loading, error } = useEnrolledCourses();
 
   if (loading) {
-    return <Spin size="large" />;
+    return (
+      <div
+        style={{
+          display: "flex",
+          height: "100vh",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Spin size="large" />
+      </div>
+    );
   }
 
   if (error) {
@@ -44,22 +56,29 @@ const MyEnrolledCourses = () => {
   }
 
   return (
-    <Table
-      columns={[
-        ...columns,
-        {
-          title: "Action",
-          key: "action",
-          render: (_, record) => (
-            <Space size="middle">
-              <Button onClick={() => console.log(record)}>View</Button>
-            </Space>
-          ),
-        },
-      ]}
-      dataSource={courses}
-      rowKey={(record) => record._id}
-    />
+    <div>
+      <h2 style={{ textAlign: "center", margin: "20px 0" }}>
+        My Enrolled Courses
+      </h2>
+      <Table
+        columns={[
+          ...columns,
+          {
+            title: "Action",
+            key: "action",
+            render: (_, record) => (
+              <Space size="middle">
+                <Button>
+                  <NavLink to={`/enrolled-courses/${record._id}`}>View</NavLink>
+                </Button>
+              </Space>
+            ),
+          },
+        ]}
+        dataSource={courses}
+        rowKey={(record) => record._id}
+      />
+    </div>
   );
 };
 
