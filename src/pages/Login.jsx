@@ -91,19 +91,6 @@ const Login = () => {
             </Form.Item>
 
             <Form.Item
-              label="Confirm Password"
-              name="confirmPassword"
-              rules={[
-                {
-                  required: true,
-                  message: "Re-enter input your password!",
-                },
-              ]}
-            >
-              <Input.Password />
-            </Form.Item>
-
-            <Form.Item
               wrapperCol={{
                 offset: 8,
                 span: 16,

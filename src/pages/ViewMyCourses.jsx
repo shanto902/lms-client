@@ -3,6 +3,7 @@ import useMyCourses from "../hooks/useMyCourses";
 import axiosInstance from "../axios/axiosConfig";
 import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const columns = [
   {
@@ -22,25 +23,14 @@ const columns = [
     dataIndex: "price",
     key: "price",
   },
-  {
-    title: "Action",
-    key: "action",
-    render: (_, record) => (
-      <Space size="middle">
-        <Button onClick={console.log(record)}>Buy {record.courseTitle}</Button>
-      </Space>
-    ),
-  },
 ];
 const ViewMyCourses = () => {
   const { courses, loading, error, refetch } = useMyCourses();
-
+  const navigate = useNavigate();
   const { user } = useAuth();
   const handleEditCourse = (record) => {
-    // Implement logic to handle editing course
-    console.log(`Editing course: ${record.courseTitle}`);
+    navigate(`/my-courses/edit/${record._id}`);
   };
-
   const handleDeleteCourse = (record) => {
     Modal.confirm({
       title: `Are you sure you want to delete ${record.courseTitle}?`,

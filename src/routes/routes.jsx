@@ -7,6 +7,10 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ViewMyCourses from "../pages/ViewMyCourses";
 import PrivateRoute from "./private/PrivateRoute";
+import EditCourse from "../pages/EditCourse";
+import axiosInstance from "../axios/axiosConfig";
+import SuccessPayment from "../pages/SuccessPayment";
+import CancelPayment from "../pages/CancelPayment";
 
 export const router = createBrowserRouter([
   {
@@ -26,12 +30,40 @@ export const router = createBrowserRouter([
         element: <AddCourse />,
       },
       {
-        path: "/view-all-courses",
+        path: "/all-courses",
         element: <ViewAllCourses />,
       },
       {
-        path: "/view-my-courses",
+        path: "/create-payment",
+
+        children: [
+          {
+            path: "success",
+            element: <SuccessPayment />,
+          },
+          {
+            path: "cancel",
+            element: <CancelPayment />,
+          },
+        ],
+      },
+      {
+        path: "/my-courses",
         element: <ViewMyCourses />,
+      },
+      {
+        path: "/my-courses/edit/:id",
+        element: <EditCourse />,
+        loader: async ({ params }) => {
+          try {
+            const response = await axiosInstance.get(`/course/${params.id}`);
+            return response.data;
+          } catch (error) {
+            console.error("Error fetching poem:", error);
+
+            throw error;
+          }
+        },
       },
     ],
   },

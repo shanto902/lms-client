@@ -19,12 +19,12 @@ const navItems = [
   {
     key: 3,
     icon: React.createElement(DashboardOutlined),
-    label: <NavLink to={"/view-all-courses"}>View All Course</NavLink>,
+    label: <NavLink to={"/all-courses"}>View All Course</NavLink>,
   },
   {
     key: 4,
     icon: React.createElement(DashboardOutlined),
-    label: <NavLink to={"/view-my-courses"}>My All Course</NavLink>,
+    label: <NavLink to={"/my-courses"}>My All Course</NavLink>,
   },
 ];
 
@@ -41,9 +41,9 @@ const MainLayout = () => {
         return ["1"];
       case "/add-course":
         return ["2"];
-      case "/view-all-courses":
+      case "/all-courses":
         return ["3"];
-      case "/view-my-courses":
+      case "/my-courses":
         return ["4"];
       default:
         return ["1"];
