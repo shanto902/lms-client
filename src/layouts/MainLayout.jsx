@@ -26,6 +26,11 @@ const navItems = [
     icon: React.createElement(DashboardOutlined),
     label: <NavLink to={"/my-courses"}>My All Course</NavLink>,
   },
+  {
+    key: 5,
+    icon: React.createElement(DashboardOutlined),
+    label: <NavLink to={"/enrolled-courses"}>Enrolled Courses</NavLink>,
+  },
 ];
 
 const MainLayout = () => {
@@ -45,6 +50,8 @@ const MainLayout = () => {
         return ["3"];
       case "/my-courses":
         return ["4"];
+      case "/enrolled-courses":
+        return ["5"];
       default:
         return ["1"];
     }

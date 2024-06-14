@@ -11,6 +11,7 @@ import EditCourse from "../pages/EditCourse";
 import axiosInstance from "../axios/axiosConfig";
 import SuccessPayment from "../pages/SuccessPayment";
 import CancelPayment from "../pages/CancelPayment";
+import MyEnrolledCourses from "../pages/MyEnrolledCourses";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: "/all-courses",
         element: <ViewAllCourses />,
+      },
+      {
+        path: "/enrolled-courses",
+        element: <MyEnrolledCourses />,
       },
       {
         path: "/create-payment",
