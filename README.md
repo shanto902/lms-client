@@ -1,6 +1,3 @@
-### Frontend Repository README
-
-````markdown
 # LMS Dashboard Frontend
 
 This repository contains the frontend codebase for the Learning Management System (LMS) Dashboard project. The frontend is developed using React.js to provide a responsive and intuitive user interface for managing courses, user authentication using Firebase, and integrating payment systems for course enrollment.
@@ -25,6 +22,18 @@ You are tasked with developing a dynamic frontend to interact with the LMS dashb
 
    ```bash
    git clone https://github.com/shanto902/lms-client.git
-   cd lms-dashboard-frontend
+   cd lms-client
    ```
-````
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm start
+   ```
